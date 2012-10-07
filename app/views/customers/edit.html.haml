@@ -1,0 +1,7 @@
+%nav
+  = link_to 'Go back', '/'
+%h2 Edit customer
+%form{action: customer_path(1), method: :post}
+  %input{name: '_method', type: 'hidden', value: 'put'}
+  = render 'form'
+  %input{type: 'submit', value: 'Save'}

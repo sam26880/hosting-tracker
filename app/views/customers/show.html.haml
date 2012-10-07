@@ -1,0 +1,13 @@
+%nav
+  = link_to 'Go back', '/'
+  = link_to 'Edit customer', edit_customer_path(1)
+  = link_to 'Cancel customer', customer_path(1), method: 'delete'
+%h2 Acme Company
+%div.customer_details
+  %div.row
+    %div.label Expiration
+    %div.value 365 Days or Oct. 10th 2013
+  %div.row
+    %div.label Notes
+    %div.value 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus euismod pretium ante, et sollicitudin nulla vulputate sit amet. Curabitur eget interdum nisl. Nam et porta mauris. Phasellus et risus nec risus gravida interdum. Donec sed arcu est, sed faucibus quam. Suspendisse potenti. Nunc suscipit nunc ut neque aliquet auctor. Donec id placerat elit. Etiam tristique placerat hendrerit. Mauris pharetra ornare lectus id pretium.

@@ -1,17 +1,16 @@
-%header
-  %h1 Hosting for Farfromrest
-  %nav
-    = link_to 'Add Customer'
-%div.main
-  - 10.times do
-    %section.customer
+%nav
+  = link_to 'Add Customer', new_customer_path
+- 10.times do
+  %section.customer
+    %div.expiration
       %div.days
-        %div.days_count 365
-        Days
-      = link_to do
-        %h2 Acme Company
-      %nav
-        = link_to 'Edit'
-        = link_to 'Cancel'
-%footer
-  %p= "&copy; #{Date.today.year} <a href=\"http://www.farfromrest.com\">Farfromrest Web Development, Inc.</a>".html_safe
+        %div.value 365
+        %div.unit Days
+      %div.date
+        %div.value Oct. 7th
+        %div.year 2013
+    = link_to customer_path(1) do
+      %h2 Acme Company
+    %nav
+      = link_to 'Edit', edit_customer_path(1)
+      = link_to 'Cancel', customer_path(1), method: 'delete'
