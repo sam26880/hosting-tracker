@@ -8,8 +8,8 @@
 %body
   %div#wrapper
     %header
-      = link_to root_path do
-        %h1 Hosting for Farfromrest
+      %h1
+        = link_to 'Hosting for Farfromrest', root_path
     %div#main
       - if flash[:notice]
         %div.flash.notice

@@ -1,3 +1,104 @@
 @import 'reset';
+@import 'helpers';
 @import 'colors';
 @import 'base';
+.button {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  background-color: $primary_color;
+  padding: $padding/2 $padding;
+  &:hover {
+    background-color: darken($primary_color, 20%);
+  }
+}
+input[type=submit] {
+  @extend .button;
+  border: none;
+}
+#wrapper {
+  header {
+    padding: $padding/2 $padding;
+    background-color: $main_dark_color;
+    a {
+      color: #fff;
+    }
+  }
+}
+.notice {
+  background-color: lighten($main_dark_color, 70%);
+  padding: $padding;
+}
+#main {
+  padding: 0 $padding;
+  > nav {
+    text-align: right;
+    margin-bottom: $padding/2;
+    a {
+      @extend .button;
+    }
+  }
+}
+.line_item {
+  @include clear_fix;
+  padding: $padding 0;
+  border-bottom: 1px solid lighten($main_dark_color, 70%);
+  &:last-child {
+    border-bottom: none;
+  }
+}
+section.customer {
+  @extend .line_item;
+  h2 a {
+    color: $primary_color;
+  }
+  .expiration {
+    width: 7em;
+    float: right;
+    text-align: center;
+    color: $positive_color;
+    .value {
+      font-size: 150%;
+    }
+    .date {
+      display: none;
+    }
+    &:hover {
+      .date {
+        display: block;
+      }
+      .days {
+        display: none;
+      }
+    }
+  }
+  nav {
+    font-size: 80%;
+    a {
+      display: inline-block;
+      padding-right: .25em;
+      text-transform: lowercase;
+      text-decoration: none;
+      color: lighten($main_dark_color, 40%);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+.row {
+  @extend .line_item;
+  .label, label {
+    color: lighten($main_dark_color, 40%);
+    display: block;
+  }
+  > .row {
+    float: left;
+    border-bottom: 0;
+  }
+  .divider {
+    float: left;
+    padding: 2em 1em 0 1em;
+    font-style: italic;
+  }
+}

@@ -1,16 +1,16 @@
 %nav
   = link_to 'Add Customer', new_customer_path
 - 10.times do
-  %section.customer
+  %section.customer{class: cycle('expired', 'active')}
     %div.expiration
       %div.days
         %div.value 365
-        %div.unit Days
+        %div.label Days
       %div.date
         %div.value Oct. 7th
-        %div.year 2013
-    = link_to customer_path(1) do
-      %h2 Acme Company
+        %div.label 2013
+    %h2
+      = link_to 'Acme Company', customer_path(1)
     %nav
       = link_to 'Edit', edit_customer_path(1)
-      = link_to 'Cancel', customer_path(1), method: 'delete'
+      = link_to 'Delete', customer_path(1), method: 'delete'
