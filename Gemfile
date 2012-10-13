@@ -10,6 +10,20 @@ gem 'sqlite3'
 group :development do
   gem 'haml-rails'
 end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.10.1'
+  gem 'factory_girl_rails', '3.2.0'
+  gem 'guard-rspec', '~> 0.7.0'
+end
+
+group :test do
+  gem "faker", "~> 1.0.1"
+  gem "capybara", "~> 1.1.2"
+  gem "database_cleaner", "~> 0.7.2" 
+  gem "launchy", "~> 2.1.0"
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
