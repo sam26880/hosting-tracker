@@ -22,6 +22,7 @@ group :test do
   gem "capybara", "~> 1.1.2"
   gem "database_cleaner", "~> 0.7.2" 
   gem "launchy", "~> 2.1.0"
+  gem 'rb-fsevent', '~> 0.9.1'
 end
 
 # Gems used only for assets and not required
