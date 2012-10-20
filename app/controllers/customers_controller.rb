@@ -8,15 +8,26 @@ class CustomersController < ApplicationController
   end
 
   def create
-    flash[:notice] = 'Acme Customer has been added'
-    redirect_to root_path
+    @customer = Customer.new(params[:customer])
+    if @customer.save
+      redirect_to root_path, notice: "Customer has been created."
+    else
+      flash[:error] = "Customer could not be created"
+      render :new
+    end
   end
 
   def edit
+    @customer = Customer.find_by_id(params[:id])
+    unless @customer
+      redirect_to root_path
+    end
   end
 
   def update
-    flash[:notice] = 'Acme Customer has been updated'
+    @customer = Customer.find_by_id(params[:id])
+    @customer.update_attributes(params[:customer])
+    flash[:notice] = 'Acme Customer has been updated.'
     redirect_to root_path
   end
 
