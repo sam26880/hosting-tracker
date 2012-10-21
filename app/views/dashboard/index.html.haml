@@ -1,14 +1,16 @@
-- @customers.each do |customer|
-  %section.customer{id: "customer_#{customer.id}", class: cycle('odd', 'even')}
-    - if customer.expiration_date
-      %div.expiration
-        %div.days
-          %div.value= days_until customer.expiration_date, include_label: false
-          %div.label= days_until_label customer.expiration_date
-        %div.date
-          %div.value= format_month_day customer.expiration_date
-          %div.label= format_year customer.expiration_date
-    %h2= customer.name
-    %nav
-      = link_to 'Edit', edit_customer_path(customer)
-      = link_to 'Delete', customer_path(customer), method: 'delete', data: {confirm: 'Are you sure? This cannot be undone.'}
+.customers
+  - @customers.each do |customer|
+    %section.customer{id: "customer_#{customer.id}", class: cycle('odd', 'even')}
+      - if customer.expiration_date
+        %div.expiration
+          %div.days
+            %div.value= days_until customer.expiration_date, include_label: false
+            %div.label= days_until_label customer.expiration_date
+          %div.date
+            %div.value= format_month_day customer.expiration_date
+            %div.label= format_year customer.expiration_date
+      %h2= customer.name
+      %div.notes= customer.notes
+      %nav
+        = link_to 'Edit', edit_customer_path(customer)
+        = link_to 'Delete', customer_path(customer), method: 'delete', data: {confirm: 'Are you sure? This cannot be undone.'}

@@ -2,103 +2,113 @@
 @import 'helpers';
 @import 'colors';
 @import 'base';
+@import 'form';
 .button {
+  @include border_radius;
+  @include transition;
+  line-height: 1;
   text-decoration: none;
   color: #fff;
   display: inline-block;
   background-color: $primary_color;
-  padding: $padding/2 $padding;
+  padding: 4px $padding;
   &:hover {
     background-color: darken($primary_color, 20%);
   }
 }
-input[type=submit] {
-  @extend .button;
-  border: none;
-}
 #wrapper {
   header {
     padding: $padding/2 $padding;
-    background-color: $main_dark_color;
+    background-color: darken($main_dark_color, 40%);
+    > nav {
+      padding: $padding/2 0;
+      float: right;
+      text-align: right;
+      a {
+        @extend .button;
+      }
+    }
     a {
       color: #fff;
     }
   }
 }
-.notice {
-  background-color: lighten($main_dark_color, 70%);
-  padding: $padding;
-}
 #main {
-  padding: 0 $padding;
-  > nav {
-    text-align: right;
-    margin-bottom: $padding/2;
-    a {
-      @extend .button;
-    }
-  }
+  padding: $padding;
 }
 .line_item {
   @include clear_fix;
-  padding: $padding 0;
-  border-bottom: 1px solid lighten($main_dark_color, 70%);
+  padding: $padding/2 $padding;
+  background-color: #f1f1f1;
+  // border-bottom: 1px solid lighten($main_dark_color, 20%);
   &:last-child {
     border-bottom: none;
   }
+  &.even {
+    background-color: #fbfbfb;
+  }
+}
+.notice, .error {
+  @include border_radius;
+  background-color: $positive_color;
+  color: #fff;
+  padding: $padding/2 $padding;
+  margin: $padding 0;
+}
+.error {
+  background-color: $negative_color;
+}
+.customers {
+  @include border_radius;
+  overflow: hidden;
 }
 section.customer {
   @extend .line_item;
   h2 a {
     color: $primary_color;
   }
+  .notes {
+    font-style: italic;
+    font-size: 90%;
+    line-height: 1.5;
+    color: $main_dark_color;
+  }
   .expiration {
-    width: 7em;
+    text-align: right;
     float: right;
-    text-align: center;
     color: $positive_color;
     .value {
-      font-size: 150%;
+      font-size: 130%;
+    }
+    .label {
+      line-height: 1.5;
+      font-size: 80%;
+      color: $main_dark_color;
     }
     .date {
       display: none;
     }
-    &:hover {
-      .date {
-        display: block;
-      }
-      .days {
-        display: none;
-      }
+  }
+  &:hover {
+    .date {
+      display: block;
+    }
+    .days {
+      display: none;
     }
   }
   nav {
     font-size: 80%;
+    line-height: 1.5;
     a {
       display: inline-block;
-      padding-right: .25em;
+      padding-right: .5em;
       text-transform: lowercase;
-      text-decoration: none;
-      color: lighten($main_dark_color, 40%);
+      color: lighten($main_dark_color, 20%);
       &:hover {
+        color: $main_dark_color;
         text-decoration: underline;
       }
     }
-  }
-}
-.row {
-  @extend .line_item;
-  .label, label {
-    color: lighten($main_dark_color, 40%);
-    display: block;
-  }
-  > .row {
-    float: left;
-    border-bottom: 0;
-  }
-  .divider {
-    float: left;
-    padding: 2em 1em 0 1em;
-    font-style: italic;
   }
 }

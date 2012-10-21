@@ -10,3 +10,14 @@
     *zoom: 1; 
   }
 }
+@mixin border_radius($radius: 5px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+@mixin transition($property: background-color, $speed: .5s) {
+  -o-transition: $property $speed;
+  -webkit-transition: $property $speed;
+  -moz-transition: $property $speed;
+  transition: $property $speed;
+}
