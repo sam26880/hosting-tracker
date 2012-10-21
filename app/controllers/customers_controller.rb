@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
     if @customer.save
       redirect_to root_path, notice: "#{@customer.name} has been created."
     else
-      flash[:error] = "Customer could not be created"
+      flash[:error] = "Customer could not be created."
       render :new
     end
   end
@@ -30,7 +30,7 @@ class CustomersController < ApplicationController
       flash[:notice] = "#{@customer.name} has been updated."
       redirect_to root_path
     else
-      flash[:error] = "Customer could not be updated"
+      flash[:error] = "Customer could not be updated."
       render :edit
     end
   end
