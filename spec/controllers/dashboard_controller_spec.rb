@@ -3,13 +3,13 @@ require 'spec_helper'
 describe DashboardController do
   describe 'GET #index' do
     before :each do
-      @f_customer = create(:customer, name: 'F Customer')
-      @a_customer = create(:customer, name: 'A Customer')
-      @z_customer = create(:customer, name: 'Z Customer')
+      @kind_soon_customer = create(:customer, expiration_date: Date.today + 100.days)
+      @long_customer = create(:customer, expiration_date: Date.today + 365.days)
+      @soon_customer = create(:customer, expiration_date: Date.today + 30.days)
     end
-    it 'creates an array of customers that is sorted by name' do
+    it 'creates an array of customers that is sorted by expiration date' do
       get :index
-      assigns(:customers).should eq([@a_customer, @f_customer, @z_customer])
+      assigns(:customers).should eq([@soon_customer, @kind_soon_customer, @long_customer])
     end
   end
 end
