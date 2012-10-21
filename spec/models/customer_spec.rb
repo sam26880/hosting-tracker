@@ -11,9 +11,5 @@ describe Customer do
     it 'is a date object' do
       create(:customer).expiration_date.should be_kind_of(Date)
     end
-    it 'will update the date when given days instead of date' do
-      thirty_days_from_now = Date.new + 30.days
-      create(:customer, expiration_date: nil, expiring_in_days: 30).expiration_date.should eq(thirty_days_from_now)
-    end
   end
 end

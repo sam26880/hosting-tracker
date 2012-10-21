@@ -27,14 +27,17 @@ class CustomersController < ApplicationController
   def update
     @customer = Customer.find_by_id(params[:id])
     @customer.update_attributes(params[:customer])
-    flash[:notice] = 'Acme Customer has been updated.'
+    flash[:notice] = "#{@customer.name} has been updated."
     redirect_to root_path
   end
 
   def show
+    @customer = Customer.find_by_id(params[:id])
   end
 
   def destroy
+    @customer = Customer.find_by_id(params[:id])
+    flash[:notice] = 'Customer has been deleted.' if @customer.destroy
     redirect_to root_path
   end
 end

@@ -77,6 +77,10 @@ describe CustomersController do
       put :update, id: @customer
       flash[:notice].should_not be_nil
     end
+    it 'assigns an success message to flash with customer name in it' do
+      put :update, id: @customer
+      flash[:notice].should include @customer.name
+    end
     it 'assigns customer to @customer' do
       put :update, id: @customer
       assigns(:customer).should eq(@customer)
@@ -85,6 +89,14 @@ describe CustomersController do
       put :update, id: @customer, customer: attributes_for(:customer, name: 'Derek')
       @customer.reload
       @customer.name.should eq 'Derek'
+    end
+  end
+  describe 'DELETE #destroy' do
+    it 'deletes the customer' do
+      customer = create(:customer)
+      expect{
+        delete :destroy, id: customer
+      }.to change(Customer, :count).by(-1)
     end
   end
 end
