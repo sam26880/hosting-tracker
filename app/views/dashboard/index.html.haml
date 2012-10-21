@@ -1,16 +1,16 @@
 %nav
-  = link_to 'Add Customer', new_customer_path
-- 10.times do
-  %section.customer{class: cycle('expired', 'active')}
-    %div.expiration
-      %div.days
-        %div.value 365
-        %div.label Days
-      %div.date
-        %div.value Oct. 7th
-        %div.label 2013
-    %h2
-      = link_to 'Acme Company', customer_path(1)
+  = link_to 'Add customer', new_customer_path
+- @customers.each do |customer|
+  %section.customer{id: "customer_#{customer.id}", class: cycle('odd', 'even')}
+    - if customer.expiration_date
+      %div.expiration
+        %div.days
+          %div.value= days_until customer.expiration_date, include_label: false
+          %div.label= days_until_label customer.expiration_date
+        %div.date
+          %div.value= format_month_day customer.expiration_date
+          %div.label= format_year customer.expiration_date
+    %h2= customer.name
     %nav
-      = link_to 'Edit', edit_customer_path(1)
-      = link_to 'Delete', customer_path(1), method: 'delete'
+      = link_to 'Edit', edit_customer_path(customer)
+      = link_to 'Delete', customer_path(customer), method: 'delete', data: {confirm: 'Are you sure? This cannot be undone.'}
