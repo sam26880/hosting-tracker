@@ -1,0 +1,23 @@
+form {
+  @include border_radius;
+  overflow: hidden;
+}
+.row {
+  @extend .line_item;
+  .label, label {
+    color: $main_dark_color;
+    display: block;
+    em {
+      color: lighten($main_dark_color, 20%);
+    }
+  }
+  > .row {
+    float: left;
+    border-bottom: 0;
+  }
+}
+input[type=submit] {
+  @extend .button;
+  cursor: pointer;
+  border: none;
+}

@@ -1,6 +1,7 @@
 %h2 Edit customer
 = form_for @customer do
   = render 'form'
-  = submit_tag 'Save'
-  or 
-  = link_to 'Cancel', root_path
+  .row
+    = submit_tag 'Save'
+    or 
+    = link_to 'Cancel', root_path

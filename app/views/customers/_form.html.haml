@@ -3,7 +3,7 @@
     = label :customer, :name, 'Customer name'
     = text_field :customer, :name
   %div.row
-    = label :customer, :expiration_date
+    = label :customer, :expiration_date, "Expiration date <em>(Optional)</em>".html_safe
     = text_field :customer, :expiration_date, type: 'date', size: nil
   %div.row
     = label :customer, :notes, "Notes <em>(Optional)</em>".html_safe

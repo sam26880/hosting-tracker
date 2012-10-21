@@ -10,7 +10,7 @@ input, textarea {
   font-family: $primary_font_stack; 
   font-size: 90%;
   line-height: 1;
-  border: 1px solid lighten($main_dark_color, 40%);
+  border: 1px solid lighten($main_dark_color, 20%);
   padding: .25em;
 }
 textarea {
@@ -39,9 +39,9 @@ em {
 }
 footer {
   text-align: center;
-  font-size: 90%;
-  padding: $padding * 2 0;
-  color: lighten($main_dark_color, 40%);
+  padding: $padding * 3 $padding;
+  font-size: 80%;
+  color: $main_dark_color;
   a {
     color: inherit;
   }
