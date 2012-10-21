@@ -26,10 +26,8 @@ describe 'Managing customers' do
     end
   end
   describe 'deleting a customer' do
-    before :each do
-      @customer = create(:customer)
-    end
     it 'deletes the customer' do
+      @customer = create(:customer)
       visit root_path
       within 'section.customer' do
         expect {

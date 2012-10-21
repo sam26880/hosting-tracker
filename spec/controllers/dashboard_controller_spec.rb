@@ -1,5 +1,4 @@
 require 'spec_helper'
-
 describe DashboardController do
   describe 'GET #index' do
     before :each do
@@ -10,6 +9,10 @@ describe DashboardController do
     it 'creates an array of customers that is sorted by expiration date' do
       get :index
       assigns(:customers).should eq([@soon_customer, @kind_soon_customer, @long_customer])
+    end
+    it 'renders the index template' do
+      get :index
+      response.should render_template :index
     end
   end
 end

@@ -1,5 +1,4 @@
 require 'spec_helper'
-
 describe CustomersController do
   describe 'GET #index' do
     it 'redirects to root path' do
@@ -31,6 +30,11 @@ describe CustomersController do
       it 'assigns an success message to flash' do
         post :create, customer: attributes_for(:customer)
         flash[:notice].should_not be_nil
+      end
+      it 'assigns an success message to flash with the customer name in it' do
+        attributes = attributes_for(:customer)
+        post :create, customer: attributes
+        flash[:notice].should include attributes[:name]
       end
     end
     context 'with invalid customer' do
@@ -69,26 +73,40 @@ describe CustomersController do
     before :each do
       @customer = create(:customer)
     end
-    it 'redirects to the root path' do
-      put :update, id: @customer
-      response.should redirect_to root_path
+    context 'with a valid customer' do
+      it 'redirects to the root path' do
+        put :update, id: @customer
+        response.should redirect_to root_path
+      end
+      it 'assigns an success message to flash' do
+        put :update, id: @customer
+        flash[:notice].should_not be_nil
+      end
+      it 'assigns an success message to flash with customer name in it' do
+        put :update, id: @customer
+        flash[:notice].should include @customer.name
+      end
+      it 'assigns customer to @customer' do
+        put :update, id: @customer
+        assigns(:customer).should eq(@customer)
+      end
+      it 'updates the customer' do
+        put :update, id: @customer, customer: attributes_for(:customer, name: 'Derek')
+        @customer.reload
+        @customer.name.should eq 'Derek'
+      end
     end
-    it 'assigns an success message to flash' do
-      put :update, id: @customer
-      flash[:notice].should_not be_nil
-    end
-    it 'assigns an success message to flash with customer name in it' do
-      put :update, id: @customer
-      flash[:notice].should include @customer.name
-    end
-    it 'assigns customer to @customer' do
-      put :update, id: @customer
-      assigns(:customer).should eq(@customer)
-    end
-    it 'updates the customer' do
-      put :update, id: @customer, customer: attributes_for(:customer, name: 'Derek')
-      @customer.reload
-      @customer.name.should eq 'Derek'
+    context 'with invalid data' do
+      before :each do
+        @customer = create(:customer)
+        post :update, id: @customer, customer: attributes_for(:invalid_customer)
+      end
+      it 'renders the new template' do
+        response.should render_template :edit
+      end
+      it 'assigns an error message to flash' do
+        flash[:error].should_not be_nil
+      end
     end
   end
   describe 'DELETE #destroy' do
